@@ -1,11 +1,20 @@
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+}
 
-class MyApp extends StatelessWidget {
+class MyHomePage extends StatelessWidget{
   @override
   final List<Map<String, String>> item= [
     {
@@ -37,13 +46,8 @@ class MyApp extends StatelessWidget {
       "text": "Mô hình Aobing là Ngao bính-Tam thái tử của Ngao Quảng- Đông Hải Long Vương "
     },
   ];
-
-
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.black,
 
@@ -76,65 +80,63 @@ class MyApp extends StatelessWidget {
             )
           ]
       ),
-      body:ListView.builder(
-        itemCount: item.length,
-        itemBuilder: (context,index){
-          return Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-
-          child: Row(
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Image.network(
-                    item[index]["image"]!,
-
-                    fit: BoxFit.fill,
-                  )
-              ),
-              SizedBox(width:10),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                    item[index]["text"]!,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    SizedBox(height: 10,),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: TextButton(
-                        child: Text("Xem thêm",style: TextStyle(fontSize: 15),),
-                        onPressed: (){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content:Text("Đã bấm vào xem thêm", style: TextStyle(fontSize: 20),),
-                              behavior: SnackBarBehavior.floating,
-                              margin: EdgeInsets.all(10),
-                            )
-                          );
-                        },
-                      )
-                    )
-                  ],
-
+      body: ListView.builder(
+          itemCount: item.length,
+          itemBuilder: (context,index){
+            return Card(
+                margin: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              )
-            ]
 
-          )
+                child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Image.network(
+                            item[index]["image"]!,
 
-          );
-        }
+                            fit: BoxFit.fill,
+                          )
+                      ),
+                      SizedBox(width:10),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item[index]["text"]!,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(height: 10,),
+                            Align(
+                                alignment: Alignment.bottomLeft,
+                                child: TextButton(
+                                  child: Text("Xem thêm",style: TextStyle(fontSize: 15),),
+                                  onPressed: (){
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content:Text("Đã bấm vào xem thêm", style: TextStyle(fontSize: 20),),
+                                          behavior: SnackBarBehavior.floating,
+                                          margin: EdgeInsets.all(10),
+                                        )
+                                    );
+                                  },
+                                )
+                            )
+                          ],
+
+                        ),
+                      )
+                    ]
+
+                )
+
+            );
+          }
       ),
-        backgroundColor: Colors.black38,
-      ));
-
+      backgroundColor: Colors.black38,
+    );
   }
 }
-
